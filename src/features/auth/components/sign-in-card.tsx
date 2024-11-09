@@ -1,3 +1,4 @@
+"use client";
 import { z } from "zod";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,7 +21,7 @@ import { loginSchema } from "../schema";
 import { useLogin } from "../api/use-login";
 
 const SignInCard = () => {
-  const { mutate } = useLogin();
+  const { mutate, isPending } = useLogin();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     defaultValues: { email: "", password: "" },
@@ -52,6 +53,7 @@ const SignInCard = () => {
                   <FormControl>
                     <Input
                       type="email"
+                      disabled={isPending}
                       placeholder="Enter Email address"
                       {...field}
                     />
@@ -68,6 +70,7 @@ const SignInCard = () => {
                   <FormControl>
                     <Input
                       type="password"
+                      disabled={isPending}
                       placeholder="Enter Password here"
                       {...field}
                     />

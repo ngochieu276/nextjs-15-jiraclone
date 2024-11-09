@@ -1,3 +1,4 @@
+"use client";
 import { z } from "zod";
 
 import {
@@ -26,7 +27,7 @@ import { registerSchema } from "../schema";
 import { useRegister } from "../api/use-register";
 
 const SignUpCard = () => {
-  const { mutate } = useRegister();
+  const { mutate, isPending } = useRegister();
 
   const form = useForm<z.infer<typeof registerSchema>>({
     defaultValues: { name: "", email: "", password: "" },
@@ -64,7 +65,12 @@ const SignUpCard = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input type="text" placeholder="Enter Name" {...field} />
+                    <Input
+                      type="text"
+                      disabled={isPending}
+                      placeholder="Enter Name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -78,6 +84,7 @@ const SignUpCard = () => {
                   <FormControl>
                     <Input
                       type="email"
+                      disabled={isPending}
                       placeholder="Enter Email address"
                       {...field}
                     />
@@ -94,6 +101,7 @@ const SignUpCard = () => {
                   <FormControl>
                     <Input
                       type="password"
+                      disabled={isPending}
                       placeholder="Enter Password here"
                       {...field}
                     />
