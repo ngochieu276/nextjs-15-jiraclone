@@ -4,6 +4,8 @@ import { z } from "zod";
 import { useRef } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+
 import { createWorkSpaceSchema } from "../schema";
 import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
 import {
@@ -27,6 +29,7 @@ interface CreateWorkSpaceFormProps {
 }
 
 export const CreateWorkspaceForm = ({ onCancel }: CreateWorkSpaceFormProps) => {
+  const router = useRouter();
   const { mutate, isPending } = useCreateWorkspace();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -53,8 +56,9 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkSpaceFormProps) => {
     mutate(
       { form: finalValues },
       {
-        onSuccess: () => {
+        onSuccess: ({ data }) => {
           form.reset();
+          router.push(`/workspaces/${data.$id}`);
         },
       }
     );
