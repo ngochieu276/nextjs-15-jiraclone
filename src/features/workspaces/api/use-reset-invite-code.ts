@@ -31,11 +31,11 @@ export const useResetInviteCode = () => {
     },
     onSuccess: ({ data }) => {
       toast.success("Success send invite code ");
+      queryClient.invalidateQueries({ queryKey: ["workspaces"] });
       queryClient.invalidateQueries({ queryKey: ["workspaces", data.$id] });
     },
     onError: () => {
       toast.error("Failed to reset invite code");
-      queryClient.invalidateQueries({ queryKey: ["workspaces"] });
     },
   });
 
