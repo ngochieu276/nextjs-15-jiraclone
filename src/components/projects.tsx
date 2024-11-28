@@ -10,7 +10,7 @@ import useCreateProjectModal from "@/features/projects/hooks/use-create-project-
 import ProjectAvatar from "@/features/projects/components/project-avatar";
 
 const Projects = () => {
-  const projectId = null;
+  // const projectId = null;
 
   const pathName = usePathname();
   const { open } = useCreateProjectModal();
@@ -26,7 +26,7 @@ const Projects = () => {
         />
       </div>
       {data?.documents?.map((project) => {
-        const href = `workspaces/${workspaceId}/projects/${projectId}`;
+        const href = `/workspaces/${workspaceId}/projects/${project?.$id}`;
         const isActive = pathName === href;
 
         return (
