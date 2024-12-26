@@ -3,7 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreVertical } from "lucide-react";
 
-import { Task } from "../type";
+import { Task, TaskStatus } from "../type";
 import { Button } from "@/components/ui/button";
 import ProjectAvatar from "@/features/projects/components/project-avatar";
 import MemberAvatar from "@/features/members/components/member-avatar";
@@ -123,7 +123,11 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => {
       const status = row.original.status;
 
-      return <Badge variant={status}>{snakeCaseToTitleCase(status)}</Badge>;
+      return (
+        <Badge variant={status}>
+          {snakeCaseToTitleCase(status as TaskStatus)}
+        </Badge>
+      );
     },
   },
   {

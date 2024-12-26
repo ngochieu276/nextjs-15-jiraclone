@@ -18,7 +18,7 @@ interface TaskActionsProps {
   children: React.ReactNode;
 }
 
-export const TaskActions = ({ id, projectId, children }: TaskActionsProps) => {
+export const TaskActions = ({ id, children }: TaskActionsProps) => {
   const workspaceId = useWorkspaceId();
   const router = useRouter();
 
@@ -61,7 +61,7 @@ export const TaskActions = ({ id, projectId, children }: TaskActionsProps) => {
             Task Details
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => {}}
+            onClick={onOpenProject}
             disabled={false}
             className=" font-medium p-[10px]"
           >

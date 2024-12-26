@@ -39,7 +39,7 @@ export const DataKanban = ({ data, onChange }: DataKanbanProps) => {
       [TaskStatus.DONE]: [],
     };
     data.forEach((task) => {
-      initialTasks[task.status].push(task);
+      initialTasks[task.status as TaskStatus].push(task);
     });
 
     Object.keys(initialTasks).forEach((status) => {
@@ -61,7 +61,7 @@ export const DataKanban = ({ data, onChange }: DataKanbanProps) => {
     };
 
     data.forEach((task) => {
-      newTasks[task.status].push(task);
+      newTasks[task.status as TaskStatus].push(task);
     });
 
     Object.keys(newTasks).forEach((status) => {

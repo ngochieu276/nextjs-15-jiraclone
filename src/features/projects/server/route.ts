@@ -23,7 +23,7 @@ const app = new Hono()
       const { workspaceId } = c.req.valid("query");
 
       if (!workspaceId) {
-        return c.json({ error: "Missing workspaceId" });
+        throw new Error("Missing workspaceI");
       }
 
       const member = await getMember({
@@ -33,7 +33,7 @@ const app = new Hono()
       });
 
       if (!member) {
-        return c.json({ error: "Unauthorized" }, 401);
+        throw new Error("Unauthorized");
       }
 
       const projects = await databases.listDocuments<Project>(

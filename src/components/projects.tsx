@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useGetProjects } from "@/features/projects/api/use-get-projects";
@@ -25,7 +26,7 @@ const Projects = () => {
           onClick={open}
         />
       </div>
-      {data?.documents?.map((project) => {
+      {data?.documents?.map((project: any) => {
         const href = `/workspaces/${workspaceId}/projects/${project?.$id}`;
         const isActive = pathName === href;
 
