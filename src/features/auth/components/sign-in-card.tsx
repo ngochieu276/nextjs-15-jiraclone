@@ -9,6 +9,7 @@ import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signUpWithGithub, signUpWithGoogle } from "@/lib/oauth";
 import {
   Form,
   FormControl,
@@ -89,11 +90,21 @@ const SignInCard = () => {
         <DottedSeparator />
       </div>
       <CardContent className=" p-7 flex flex-col gap-y-4">
-        <Button variant={"secondary"} size={"lg"} className="w-full">
+        <Button
+          onClick={signUpWithGoogle}
+          variant={"secondary"}
+          size={"lg"}
+          className="w-full"
+        >
           <FcGoogle className="mr-2 size-5" />
           Login with Google
         </Button>
-        <Button variant={"secondary"} size={"lg"} className="w-full">
+        <Button
+          onClick={signUpWithGithub}
+          variant={"secondary"}
+          size={"lg"}
+          className="w-full"
+        >
           <FaGithub className="mr-2 size-5" />
           Login with Github
         </Button>
