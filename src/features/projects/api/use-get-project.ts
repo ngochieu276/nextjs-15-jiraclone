@@ -8,7 +8,7 @@ interface UseGetProjectProps {
 
 export const useGetProject = ({ projectId }: UseGetProjectProps) => {
   const query = useQuery({
-    queryKey: ["projects", projectId],
+    queryKey: ["project", projectId],
     queryFn: async () => {
       const response = await client.api.projects[":projectId"].$get({
         param: { projectId },
